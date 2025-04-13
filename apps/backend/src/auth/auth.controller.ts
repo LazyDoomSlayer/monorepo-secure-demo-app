@@ -25,4 +25,12 @@ export class AuthController {
   adminstuff(@Req() req) {
     console.log(req);
   }
+
+  @Post('refresh')
+  async refresh(@Body('refreshToken') refreshToken: string) {
+    const user = await this.authService.getUserByRefreshToken(refreshToken);
+    const tokens = await this.authService.generateTokens(user);
+    await this.authService.updateRefreshToken(user.id, tokens.refreshToken);
+    return tokens;
+  }
 }

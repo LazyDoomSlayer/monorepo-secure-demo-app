@@ -8,7 +8,7 @@ import { DataSource, Repository } from 'typeorm';
 import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 import { ERROR_CODE_FOR_DUBLICATE } from 'src/assets/constants';
 import { EAuthErrorMessages } from './auth.enum';
-import bcrypt from 'bcryptjs';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class UsersRepository extends Repository<User> {

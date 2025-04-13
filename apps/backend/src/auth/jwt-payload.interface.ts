@@ -4,4 +4,5 @@ export interface IJwtPayload {
 
 export interface IJwtResponse {
   accessToken: string;
+  refreshToken: string;
 }

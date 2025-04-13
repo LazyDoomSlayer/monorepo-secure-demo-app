@@ -14,4 +14,7 @@ export class User {
 
   @OneToMany((_type) => Task, (task) => task.user, { eager: true })
   tasks: Task[];
+
+  @Column({ nullable: true })
+  refreshToken: string;
 }
