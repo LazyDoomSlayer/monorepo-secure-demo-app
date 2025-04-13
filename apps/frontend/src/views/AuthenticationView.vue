@@ -1,7 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import LoginComponent from '@/components/authentication/LoginComponent.vue'
+</script>
 
 <template>
-  <div>auth ehre</div>
+  <login-component />
 </template>
 
 <style scoped></style>

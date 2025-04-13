@@ -5,20 +5,23 @@ export const authMiddleware = async (
   to: RouteLocationNormalized,
   next: NavigationGuardNext,
 ): Promise<void> => {
-  const authStore = useAuthStore()
+  // const authStore = useAuthStore()
+  //
+  // if (authStore.authUser === null) {
+  //   await authStore.initAuth()
+  // }
+  const token = localStorage.getItem('user_access_token')
 
-  if (authStore.authUser === null) {
-    await authStore.initAuth()
-  }
   const authRequired = to.matched.some((record) => record.meta.authRequired)
   const guestOnly = to.matched.some((record) => record.meta.guestOnly)
 
-  console.log(111, authRequired, authStore.authUser)
-  console.log(2222, guestOnly, authStore.authUser)
-  if (authRequired && authStore.authUser === null) {
+  // console.log(111, authRequired, authStore.authUser)
+  // console.log(2222, guestOnly, authStore.authUser)
+
+  if (authRequired && token === null) {
     next({ name: 'auth' })
   }
-  if (guestOnly && authStore.authUser !== null) {
+  if (guestOnly && token !== null) {
     next({ name: 'home' })
   }
   next()
@@ -34,6 +37,6 @@ export const notFoundMiddleware = (
   if (authStore.authUser) {
     next({ name: 'home' })
   } else {
-    next({ name: 'login' })
+    next({ name: 'auth' })
   }
 }
