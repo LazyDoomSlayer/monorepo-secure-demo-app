@@ -5,5 +5,5 @@ export interface AuthCredentials {
 
 export interface JwtResponse {
   accessToken: string
-  refreshToken: string
+  refreshToken?: string
 }

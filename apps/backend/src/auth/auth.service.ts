@@ -33,15 +33,22 @@ export class AuthService {
     throw new UnauthorizedException(EAuthErrorMessages.WRONG_CREDENTIALS);
   }
 
+  async signOut(userId: string): Promise<void> {
+    await this.usersRepository.update(userId, { refreshToken: null });
+  }
+
   async generateTokens(user: User) {
-    const payload = { username: user.username, sub: user.id };
+    const payload = {
+      username: user.username,
+      sub: user.id,
+    };
 
     const accessToken = this.jwtService.sign(payload, {
       expiresIn: '15m',
     });
 
     const refreshToken = this.jwtService.sign(payload, {
-      secret: process.env.JWT_REFRESH_SECRET, // use refresh secret here
+      secret: process.env.JWT_REFRESH_SECRET,
       expiresIn: '7d',
     });
 
@@ -56,6 +63,8 @@ export class AuthService {
   async getUserByRefreshToken(token: string): Promise<User> {
     const users = await this.usersRepository.find(); // fetch all users with tokens
     for (const user of users) {
+      if (!user.refreshToken) continue;
+
       const isMatch = await bcrypt.compare(token, user.refreshToken);
       if (isMatch) return user;
     }

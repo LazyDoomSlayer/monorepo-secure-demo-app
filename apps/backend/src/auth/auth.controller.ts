@@ -1,8 +1,16 @@
-import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  Req,
+  UnauthorizedException,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 import type { IJwtResponse } from './jwt-payload.interface';
 import { AuthGuard } from '@nestjs/passport';
+import { User } from './user.entity';
 
 @Controller('auth')
 export class AuthController {
@@ -18,6 +26,18 @@ export class AuthController {
     @Body() authCredentialsDto: AuthCredentialsDto,
   ): Promise<IJwtResponse> {
     return this.authService.signIn(authCredentialsDto);
+  }
+
+  @Post('/signout')
+  @UseGuards(AuthGuard())
+  async signOut(@Req() req: Request & { user: User }) {
+    const user = req.user;
+    if (!user || !user.id) {
+      throw new UnauthorizedException('Invalid or missing token');
+    }
+
+    await this.authService.signOut(user.id);
+    return { message: 'Signed out successfully' };
   }
 
   @Post('/adminstuff')

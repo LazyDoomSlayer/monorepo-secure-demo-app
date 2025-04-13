@@ -12,9 +12,10 @@ export class User {
   @Column()
   password: string;
 
+  @Column('text', { nullable: true })
+  refreshToken: string | null;
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToMany((_type) => Task, (task) => task.user, { eager: true })
   tasks: Task[];
-
-  @Column({ nullable: true })
-  refreshToken: string;
 }

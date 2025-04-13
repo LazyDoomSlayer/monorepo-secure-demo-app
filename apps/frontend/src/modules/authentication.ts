@@ -28,3 +28,15 @@ export async function refreshToken(refreshToken: string): Promise<JwtResponse> {
     throw err
   }
 }
+
+export async function signOut(): Promise<void> {
+  try {
+    await axiosAPICall.post('/auth/signout')
+    
+    localStorage.removeItem('user_access_token')
+    localStorage.removeItem('refresh_token')
+  } catch (err) {
+    console.error('Sign out failed:', (err as Error).message)
+    throw err
+  }
+}
