@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <v-app>
-    <router-view />
-  </v-app>
+  <div>auth ehre</div>
 </template>
+
+<style scoped></style>
