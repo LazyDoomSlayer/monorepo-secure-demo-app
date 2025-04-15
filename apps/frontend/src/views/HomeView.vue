@@ -24,14 +24,18 @@
 </template>
 
 <script setup lang="ts">
-import { useAuth } from '@/composables/useAuthentication.ts'
+import { initAuth, useAuth } from '@/composables/useAuthentication.ts'
 
 const { signOut } = useAuth()
 
-import { ref } from 'vue'
+import { onBeforeMount, ref } from 'vue'
 import TaskManagement from '@/components/TaskManagement.vue'
 
 const drawer = ref(true)
 const rail = ref(true)
 const selectedValue = ref<string>('home')
+
+onBeforeMount(() => {
+  initAuth()
+})
 </script>

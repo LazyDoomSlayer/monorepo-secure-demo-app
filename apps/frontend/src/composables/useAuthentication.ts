@@ -2,11 +2,42 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStorage } from '@vueuse/core'
+import { jwtDecode } from 'jwt-decode'
+
+import { refreshToken as apiRefreshToken, signOut } from '@/modules/authentication'
 import { signOut as signOutAPI } from '@/modules/authentication'
 
 const accessToken = useStorage<string | null>('user_access_token', null)
 const refreshToken = useStorage<string | null>('refresh_token', null)
 const isAuthenticated = ref(!!accessToken.value)
+
+function isExpired(token: string): boolean {
+  try {
+    const { exp } = jwtDecode<{ exp: number }>(token)
+    return Date.now() >= exp * 1000
+  } catch {
+    return true
+  }
+}
+
+export async function initAuth() {
+  if (!accessToken.value && !refreshToken.value) return
+
+  if (accessToken.value && !isExpired(accessToken.value)) return
+
+  if (refreshToken.value && !isExpired(refreshToken.value)) {
+    try {
+      const tokens = await apiRefreshToken(refreshToken.value)
+      accessToken.value = tokens.accessToken
+      refreshToken.value = tokens.refreshToken
+    } catch (err) {
+      console.warn('Refresh failed, signing out')
+      await signOut()
+    }
+  } else {
+    await signOut()
+  }
+}
 
 export function useAuth() {
   const router = useRouter()
