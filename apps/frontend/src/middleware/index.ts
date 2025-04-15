@@ -1,30 +1,43 @@
 import type { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
 import { useAuthStore } from '@/stores/auth.store.ts'
 
+import { jwtDecode } from 'jwt-decode'
+
+interface JwtPayload {
+  exp: number
+  iat: number
+  sub: string
+  username: string
+}
+
 export const authMiddleware = async (
   to: RouteLocationNormalized,
   next: NavigationGuardNext,
 ): Promise<void> => {
-  // const authStore = useAuthStore()
-  //
-  // if (authStore.authUser === null) {
-  //   await authStore.initAuth()
-  // }
   const token = localStorage.getItem('user_access_token')
-
   const authRequired = to.matched.some((record) => record.meta.authRequired)
   const guestOnly = to.matched.some((record) => record.meta.guestOnly)
 
-  // console.log(111, authRequired, authStore.authUser)
-  // console.log(2222, guestOnly, authStore.authUser)
+  const isExpired = (jwt: string): boolean => {
+    try {
+      const { exp } = jwtDecode<JwtPayload>(jwt)
+      return Date.now() >= exp * 1000
+    } catch {
+      return true
+    }
+  }
 
-  if (authRequired && token === null) {
-    next({ name: 'auth' })
+  const tokenExpired = token ? isExpired(token) : true
+
+  if (authRequired && (!token || tokenExpired)) {
+    return next({ name: 'login' })
   }
-  if (guestOnly && token !== null) {
-    next({ name: 'home' })
+
+  if (guestOnly && token && !tokenExpired) {
+    return next({ name: 'home' })
   }
-  next()
+
+  return next()
 }
 
 export const notFoundMiddleware = (
@@ -37,6 +50,6 @@ export const notFoundMiddleware = (
   if (authStore.authUser) {
     next({ name: 'home' })
   } else {
-    next({ name: 'auth' })
+    next({ name: 'login' })
   }
 }
