@@ -5,6 +5,7 @@
 
       <v-form v-model="formValid" @submit.prevent="handleSubmit">
         <v-text-field
+          data-cy="register-username"
           v-model="form.username"
           label="Username"
           :rules="[notEmptyUsername]"
@@ -13,6 +14,7 @@
         />
 
         <v-text-field
+          data-cy="register-password"
           v-model="form.password"
           label="Password"
           type="password"
@@ -22,6 +24,7 @@
         />
 
         <v-text-field
+          data-cy="register-repeat-password"
           v-model="repeatPassword"
           label="Repeat Password"
           type="password"
@@ -30,7 +33,14 @@
           prepend-icon="lock"
         />
 
-        <v-btn :loading="isLoading" type="submit" color="primary" class="mt-4" block>
+        <v-btn
+          data-cy="register-submit"
+          :loading="isLoading"
+          type="submit"
+          color="primary"
+          class="mt-4"
+          block
+        >
           Register
         </v-btn>
 
@@ -48,9 +58,11 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import type { AuthCredentials } from '@/types/modules/authentication.types'
-import { signUp } from '@/modules/authentication'
 import { useRouter } from 'vue-router'
+import { signUp } from '@/modules/authentication'
+import type { AuthCredentials } from '@/types/modules/authentication.types'
+
+const router = useRouter()
 
 const formValid = ref(false)
 const isLoading = ref(false)
@@ -61,26 +73,25 @@ const form = ref<AuthCredentials>({
   username: '',
   password: '',
 })
+
 const repeatPassword = ref('')
 
 const notEmptyUsername = (value: unknown): true | string =>
-  (value !== null && value !== undefined && value !== '') || 'Username should not be empty.'
+  !!value || 'Username should not be empty.'
 
 const notEmptyPassword = (value: unknown): true | string =>
-  (value !== null && value !== undefined && value !== '') || 'Password should not be empty.'
-
-const matchPassword = (value: string): true | string =>
-  value === form.value.password || 'Passwords do not match.'
+  !!value || 'Password should not be empty.'
 
 const strongPassword = (value: string): true | string => {
   const pattern = /((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/
   return (
     (value.length >= 8 && value.length <= 64 && pattern.test(value)) ||
-    'Password must be 8-64 chars, include uppercase, lowercase, and a number or special character.'
+    'Password must be 8–64 chars, with uppercase, lowercase, and number/symbol.'
   )
 }
 
-const router = useRouter()
+const matchPassword = (value: string): true | string =>
+  value === form.value.password || 'Passwords do not match.'
 
 async function handleSubmit() {
   if (!formValid.value) return
@@ -95,7 +106,6 @@ async function handleSubmit() {
     form.value.username = ''
     form.value.password = ''
     repeatPassword.value = ''
-
     router.push({ name: 'login' })
   } catch (err) {
     errorMessage.value = (err as Error).message || 'Registration failed'
