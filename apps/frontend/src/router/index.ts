@@ -17,12 +17,19 @@ const router = createRouter({
       name: 'auth',
       component: AuthenticationView,
       meta: { guestOnly: true },
+      children: [
+        {
+          path: 'login',
+          name: 'login',
+          component: () => import('@/views/authentication/LoginView.vue'),
+        },
+        {
+          path: 'register',
+          name: 'register',
+          component: () => import('@/views/authentication/RegisterView.vue'),
+        },
+      ],
     },
-    // {
-    //   path: '/about',
-    //   name: 'about',
-    //   component: () => import('../views/AboutView.vue'),
-    // },
   ],
 })
 

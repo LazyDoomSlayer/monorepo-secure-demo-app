@@ -62,10 +62,8 @@ async function handleSubmit() {
     localStorage.setItem('user_access_token', tokens.accessToken)
     localStorage.setItem('refresh_token', tokens.refreshToken)
 
-    console.log('Login successful!')
     router.push({ name: 'home' })
   } catch (err) {
-    console.log('err', err)
     errorMessage.value = (err as Error).message || 'Login failed'
   } finally {
     isLoading.value = false
