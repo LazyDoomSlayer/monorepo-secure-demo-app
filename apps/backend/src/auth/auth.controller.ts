@@ -40,11 +40,11 @@ export class AuthController {
     return { message: 'Signed out successfully' };
   }
 
-  @Post('/adminstuff')
-  @UseGuards(AuthGuard())
-  adminstuff(@Req() req) {
-    console.log(req);
-  }
+  // @Post('/adminstuff')
+  // @UseGuards(AuthGuard())
+  // adminstuff(@Req() req) {
+  //   console.info(req);
+  // }
 
   @Post('refresh')
   async refresh(@Body('refreshToken') refreshToken: string) {
