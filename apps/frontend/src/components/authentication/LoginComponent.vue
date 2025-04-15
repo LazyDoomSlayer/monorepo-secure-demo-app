@@ -34,6 +34,16 @@
           Sign In
         </v-btn>
 
+        <v-btn
+          data-cy="go-to-register"
+          variant="text"
+          class="mt-2"
+          @click.left="redirectToRegisterPage"
+          block
+        >
+          Don't have an account? Register
+        </v-btn>
+
         <v-alert v-if="errorMessage" type="error" variant="tonal" class="mt-4" dense>
           {{ errorMessage }}
         </v-alert>
@@ -80,6 +90,14 @@ async function handleSubmit() {
     errorMessage.value = err?.response?.data?.message || 'Login failed'
   } finally {
     isLoading.value = false
+  }
+}
+
+async function redirectToRegisterPage() {
+  try {
+    await router.push({ name: 'register' })
+  } catch (e) {
+    console.error(e)
   }
 }
 </script>
