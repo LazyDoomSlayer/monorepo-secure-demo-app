@@ -22,7 +22,7 @@ export function useAuth() {
     refreshToken.value = null
     isAuthenticated.value = false
 
-    router.push({ name: 'auth' })
+    router.push({ name: 'login' })
   }
 
   function setTokens(access: string, refresh: string) {
