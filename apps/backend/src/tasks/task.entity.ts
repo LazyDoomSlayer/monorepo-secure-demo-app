@@ -21,6 +21,7 @@ export class Task {
   })
   status: ETaskStatus;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @ManyToOne((_type) => User, (user) => user.tasks, { eager: false })
   @Exclude({
     toPlainOnly: true,

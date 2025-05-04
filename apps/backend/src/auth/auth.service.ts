@@ -6,7 +6,7 @@ import * as bcrypt from 'bcryptjs';
 
 import { EAuthErrorMessages } from './auth.enum';
 import { JwtService } from '@nestjs/jwt';
-import type { IJwtPayload, IJwtResponse } from './jwt-payload.interface';
+import type { IJwtResponse } from './jwt-payload.interface';
 import { User } from './user.entity';
 
 @Injectable()

@@ -33,9 +33,7 @@ export class TasksRepository extends Repository<Task> {
       });
     }
 
-    const tasks = await query.getMany();
-
-    return tasks;
+    return await query.getMany();
   }
 
   async findById(id: string, user: User): Promise<Task | null> {
