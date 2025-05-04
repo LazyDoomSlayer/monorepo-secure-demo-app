@@ -6,7 +6,7 @@ import {
 import { User } from './user.entity';
 import { DataSource, Repository } from 'typeorm';
 import { AuthCredentialsDto } from './dto/auth-credentials.dto';
-import { ERROR_CODE_FOR_DUBLICATE } from 'src/assets/constants';
+import { ERROR_CODE_FOR_DUBLICATE } from '../assets/constants';
 import { EAuthErrorMessages } from './auth.enum';
 import * as bcrypt from 'bcryptjs';
 

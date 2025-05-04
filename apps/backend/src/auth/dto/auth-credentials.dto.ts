@@ -1,5 +1,5 @@
 import { IsString, Matches, MaxLength, MinLength } from 'class-validator';
-import { DEFAULT_PASSWORD_PATTERN } from 'src/assets/patterns';
+import { DEFAULT_PASSWORD_PATTERN } from '../../assets/patterns';
 
 export class AuthCredentialsDto {
   @IsString()

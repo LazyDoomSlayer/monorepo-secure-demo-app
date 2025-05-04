@@ -17,8 +17,11 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('/signup')
-  async signUp(@Body() authCredentialsDto: AuthCredentialsDto): Promise<void> {
-    return this.authService.signUp(authCredentialsDto);
+  async signUp(
+    @Body() authCredentialsDto: AuthCredentialsDto,
+  ): Promise<{ msg: string }> {
+    await this.authService.signUp(authCredentialsDto);
+    return { msg: 'User was added successfully' };
   }
 
   @Post('/signin')
