@@ -1,6 +1,6 @@
 describe('User Registration', () => {
   // Limit username to 16 characters max
-  const username = `usr${Date.now()}`.slice(0, 8)
+  const username = `usr${Date.now()}`
   const password = 'TestPass123!'
 
   it('Navigates to register and registers successfully', () => {
