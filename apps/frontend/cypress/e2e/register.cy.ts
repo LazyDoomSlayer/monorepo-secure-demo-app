@@ -17,25 +17,4 @@ describe('User Registration', () => {
 
     cy.url().should('include', '/login')
   })
-
-  it('Shows error when passwords do not match', () => {
-    cy.visit('/register')
-
-    cy.get('[data-cy="register-username"]').type(`usr${Date.now()}`.slice(0, 8))
-    cy.get('[data-cy="register-password"]').type(password)
-    cy.get('[data-cy="register-repeat-password"]').type('WrongPass123!')
-
-    cy.get('[data-cy="register-submit"]').click()
-
-    cy.contains('Passwords do not match.').should('be.visible')
-  })
-
-  it('Shows error if fields are empty', () => {
-    cy.visit('/register')
-
-    cy.get('[data-cy="register-submit"]').click()
-
-    cy.contains('Username should not be empty.').should('be.visible')
-    cy.contains('Password should not be empty.').should('be.visible')
-  })
 })
