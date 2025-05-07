@@ -1,9 +1,9 @@
 import './assets/main.css'
-import 'material-symbols';
-import 'material-icons/iconfont/material-icons.css';
-import "@fontsource/inter";
+import 'material-symbols'
+import 'material-icons/iconfont/material-icons.css'
+import '@fontsource/inter'
 
-import { vuetify } from './plugins/vuetify';
+import { vuetify } from './plugins/vuetify'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
@@ -15,5 +15,5 @@ const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
-app.use(vuetify);
+app.use(vuetify)
 app.mount('#app')

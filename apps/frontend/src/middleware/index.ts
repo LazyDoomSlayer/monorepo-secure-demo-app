@@ -3,7 +3,7 @@ import { useAuthStore } from '@/stores/auth.store.ts'
 
 import { jwtDecode } from 'jwt-decode'
 
-enum ERole {
+export enum ERole {
   User = 'user',
   Admin = 'admin',
 }
