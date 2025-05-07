@@ -11,6 +11,8 @@ import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 import type { IJwtResponse } from './jwt-payload.interface';
 import { AuthGuard } from '@nestjs/passport';
 import { User } from './user.entity';
+import { Role } from './auth.enum';
+import { Roles } from './auth-roles.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -43,11 +45,13 @@ export class AuthController {
     return { message: 'Signed out successfully' };
   }
 
-  // @Post('/adminstuff')
-  // @UseGuards(AuthGuard())
-  // adminstuff(@Req() req) {
-  //   console.info(req);
-  // }
+  @Post('/adminstuff')
+  @UseGuards(AuthGuard())
+  @Roles(Role.Admin)
+  adminstuff(@Req() req) {
+    console.info(req);
+    return 'Helo from admin';
+  }
 
   @Post('refresh')
   async refresh(@Body('refreshToken') refreshToken: string) {
