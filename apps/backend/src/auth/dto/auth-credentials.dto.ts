@@ -4,7 +4,7 @@ import { DEFAULT_PASSWORD_PATTERN } from '../../assets/patterns';
 export class AuthCredentialsDto {
   @IsString()
   @MinLength(4)
-  @MaxLength(16)
+  @MaxLength(64)
   username: string;
 
   @IsString()

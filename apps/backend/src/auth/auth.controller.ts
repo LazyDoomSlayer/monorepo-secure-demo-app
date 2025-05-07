@@ -13,6 +13,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { User } from './user.entity';
 import { Role } from './auth.enum';
 import { Roles } from './auth-roles.decorator';
+import { RolesGuard } from './roles.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -46,11 +47,11 @@ export class AuthController {
   }
 
   @Post('/adminstuff')
-  @UseGuards(AuthGuard())
   @Roles(Role.Admin)
+  @UseGuards(AuthGuard(), RolesGuard) // ← no () on RolesGuard
   adminstuff(@Req() req) {
-    console.info(req);
-    return 'Helo from admin';
+    console.info(req.user);
+    return 'Hello from admin';
   }
 
   @Post('refresh')

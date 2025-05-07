@@ -9,6 +9,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { JWT_SECRET } from '../assets/constants';
 import { JwtStrategy } from './jwt.strategy';
 import { RolesGuard } from './roles.guard';
+import { AdminSeederService } from './admin-seeder.service';
 
 @Module({
   imports: [
@@ -22,7 +23,13 @@ import { RolesGuard } from './roles.guard';
     TypeOrmModule.forFeature([User]),
   ],
   controllers: [AuthController],
-  providers: [AuthService, UsersRepository, JwtStrategy, RolesGuard],
+  providers: [
+    AuthService,
+    UsersRepository,
+    JwtStrategy,
+    RolesGuard,
+    AdminSeederService,
+  ],
   exports: [JwtStrategy, PassportModule, RolesGuard],
 })
 export class AuthModule {}
