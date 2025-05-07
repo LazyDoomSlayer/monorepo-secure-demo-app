@@ -3,11 +3,17 @@ import { useAuthStore } from '@/stores/auth.store.ts'
 
 import { jwtDecode } from 'jwt-decode'
 
+enum ERole {
+  User = 'user',
+  Admin = 'admin',
+}
+
 interface JwtPayload {
   exp: number
   iat: number
   sub: string
   username: string
+  role: ERole
 }
 
 export const authMiddleware = async (
