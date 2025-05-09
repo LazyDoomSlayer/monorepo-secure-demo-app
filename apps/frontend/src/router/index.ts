@@ -4,6 +4,7 @@ import AdminView from '@/views/AdminView.vue'
 import AuthenticationView from '@/views/AuthenticationView.vue'
 import { authMiddleware, ERole, notFoundMiddleware } from '@/middleware'
 import { useAuthStore } from '@/stores/auth.store.ts'
+import TaskManagement from '@/views/TaskManagement.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,7 +13,13 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-      meta: { authRequired: true, roles: [ERole.Admin, ERole.User] },
+      meta: { authRequired: true, roles: [ERole.User] },
+    },
+    {
+      path: '/task-management',
+      name: 'task-management',
+      component: TaskManagement,
+      meta: { authRequired: true, roles: [ERole.User] },
     },
     {
       path: '/admin-view',
@@ -44,15 +51,6 @@ const router = createRouter({
 router.beforeEach(async (to, _from, next) => {
   notFoundMiddleware(to, next)
   await authMiddleware(to, next)
-
-  const requiredRoles = to.meta.roles as ERole[] | undefined
-  if (requiredRoles) {
-    const { authUser } = useAuthStore()
-    console.log('authUser', authUser)
-    if (!authUser || !requiredRoles.includes(authUser.role)) {
-      return next({ name: 'home' })
-    }
-  }
 })
 
 export default router

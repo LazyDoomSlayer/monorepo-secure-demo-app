@@ -6,15 +6,20 @@ import { jwtDecode } from 'jwt-decode'
 
 import { refreshToken as apiRefreshToken, signOut } from '@/modules/authentication'
 import { signOut as signOutAPI } from '@/modules/authentication'
+import { type IUserData, useAuthStore } from '@/stores/auth.store.ts'
 
 const accessToken = useStorage<string | null>('user_access_token', null)
 const refreshToken = useStorage<string | null>('refresh_token', null)
 const isAuthenticated = ref(!!accessToken.value)
 
 function isExpired(token: string): boolean {
+  const authStore = useAuthStore()
+
   try {
-    const { exp } = jwtDecode<{ exp: number }>(token)
-    return Date.now() >= exp * 1000
+    const response = jwtDecode<IUserData>(token)
+    authStore.setUser(response)
+
+    return Date.now() >= response.exp * 1000
   } catch {
     return true
   }

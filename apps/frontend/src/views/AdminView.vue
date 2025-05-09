@@ -9,11 +9,18 @@
     <v-divider></v-divider>
 
     <v-list density="compact" nav v-model:selected="selectedValue">
+      <v-list-item
+        prepend-icon="home"
+        title="Home"
+        value="home"
+        @click.left="goToHome"
+      ></v-list-item>
+
       <v-list-item prepend-icon="logout" title="Logout" @click="signOut" />
     </v-list>
   </v-navigation-drawer>
 
-  <v-main> admin content here </v-main>
+  <v-main> <audit-logs-management /> </v-main>
 </template>
 
 <script setup lang="ts">
@@ -22,12 +29,25 @@ import { initAuth, useAuth } from '@/composables/useAuthentication.ts'
 const { signOut } = useAuth()
 
 import { onBeforeMount, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { getAllAuditLogs } from '@/modules/audit.ts'
+import AuditLogsManagement from '@/components/audit/AuditLogsManagement.vue'
 
 const drawer = ref(true)
 const rail = ref(true)
 const selectedValue = ref<string>('home')
+const router = useRouter()
 
-onBeforeMount(() => {
-  initAuth()
+async function goToHome() {
+  try {
+    await router.push({ name: 'home' })
+  } catch (e) {
+    console.error(e)
+  }
+}
+onBeforeMount(async () => {
+  await initAuth()
+  const data = await getAllAuditLogs()
+  console.log('data', data)
 })
 </script>

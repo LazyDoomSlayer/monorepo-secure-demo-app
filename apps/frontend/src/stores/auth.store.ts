@@ -1,26 +1,24 @@
 import { ref } from 'vue'
 
 import { defineStore } from 'pinia'
+import type { ERole } from '@/middleware'
+
+export interface IUserData {
+  role: ERole
+  sub: string
+  exp: number
+  username: string
+}
 
 export const useAuthStore = defineStore('user', () => {
-  const authUser = ref<object | null>(null)
+  const authUser = ref<IUserData | null>(null)
 
-  function setUser(user: object | null): void {
+  function setUser(user: IUserData | null): void {
     authUser.value = user
-  }
-
-  async function initAuth(): Promise<void> {
-    try {
-      throw new Error('mock error')
-      // authUser.value = {} // TODO: here
-    } catch {
-      authUser.value = null
-    }
   }
 
   return {
     authUser,
-    initAuth,
     setUser,
   }
 })

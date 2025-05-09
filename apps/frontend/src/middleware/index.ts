@@ -23,7 +23,7 @@ export const authMiddleware = async (
   const token = localStorage.getItem('user_access_token')
   const authRequired = to.matched.some((record) => record.meta.authRequired)
   const guestOnly = to.matched.some((record) => record.meta.guestOnly)
-
+  console.log('to roles', to.meta.roles)
   const isExpired = (jwt: string): boolean => {
     try {
       const { exp } = jwtDecode<JwtPayload>(jwt)
@@ -36,11 +36,13 @@ export const authMiddleware = async (
   const tokenExpired = token ? isExpired(token) : true
 
   if (authRequired && (!token || tokenExpired)) {
-    return next({ name: 'login' })
+    next({ name: 'login' })
+    return
   }
 
   if (guestOnly && token && !tokenExpired) {
-    return next({ name: 'home' })
+    next({ name: 'home' })
+    return
   }
 
   return next()
@@ -55,7 +57,8 @@ export const notFoundMiddleware = (
   const authStore = useAuthStore()
   if (authStore.authUser) {
     next({ name: 'home' })
-  } else {
-    next({ name: 'login' })
+    return
   }
+
+  next({ name: 'login' })
 }
