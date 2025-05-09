@@ -1,5 +1,5 @@
 import type { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
-import { useAuthStore } from '@/stores/auth.store.ts'
+import { type IUserData, useAuthStore } from '@/stores/auth.store.ts'
 
 import { jwtDecode } from 'jwt-decode'
 
@@ -20,29 +20,50 @@ export const authMiddleware = async (
   to: RouteLocationNormalized,
   next: NavigationGuardNext,
 ): Promise<void> => {
+  const authStore = useAuthStore()
   const token = localStorage.getItem('user_access_token')
-  const authRequired = to.matched.some((record) => record.meta.authRequired)
-  const guestOnly = to.matched.some((record) => record.meta.guestOnly)
-  console.log('to roles', to.meta.roles)
+
   const isExpired = (jwt: string): boolean => {
     try {
-      const { exp } = jwtDecode<JwtPayload>(jwt)
-      return Date.now() >= exp * 1000
+      const response = jwtDecode<IUserData>(jwt)
+      authStore.setUser(response)
+
+      return Date.now() >= (response.exp ?? 0) * 1000
     } catch {
       return true
     }
   }
-
   const tokenExpired = token ? isExpired(token) : true
 
-  if (authRequired && (!token || tokenExpired)) {
-    next({ name: 'login' })
-    return
+  if (token && !authStore.authUser) {
+    try {
+      // await authStore.fetchCurrentUser()
+    } catch (err) {
+      localStorage.removeItem('user_access_token')
+      return next({ name: 'login' })
+    }
   }
 
-  if (guestOnly && token && !tokenExpired) {
-    next({ name: 'home' })
-    return
+  if (to.matched.some((r) => r.meta.authRequired) && (!token || tokenExpired)) {
+    return next({ name: 'login' })
+  }
+
+  if (to.matched.some((r) => r.meta.guestOnly) && token && !tokenExpired) {
+    if (to.name !== 'home') {
+      return next({ name: 'home' })
+    }
+    return next()
+  }
+
+  const allowedRoles = Array.isArray(to.meta.roles) ? (to.meta.roles as string[]) : []
+  if (allowedRoles.length > 0) {
+    const userRole = authStore.authUser?.role
+    if (!userRole || !allowedRoles.includes(userRole)) {
+      if (to.name !== 'home') {
+        return next({ name: 'home' })
+      }
+      return next()
+    }
   }
 
   return next()

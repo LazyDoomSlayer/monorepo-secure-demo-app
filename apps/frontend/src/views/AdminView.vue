@@ -15,7 +15,7 @@
         value="home"
         @click.left="goToHome"
       ></v-list-item>
-
+      <v-list-item prepend-icon="person" title="Admin" value="Admin"></v-list-item>
       <v-list-item prepend-icon="logout" title="Logout" @click="signOut" />
     </v-list>
   </v-navigation-drawer>

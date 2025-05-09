@@ -11,10 +11,10 @@
     </v-list-item>
 
     <v-divider></v-divider>
-
     <v-list density="compact" nav v-model:selected="selectedValue">
       <v-list-item prepend-icon="home" title="Home" value="home"></v-list-item>
       <v-list-item
+        v-if="authStore.authUser?.role === ERole.User"
         prepend-icon="task"
         title="Task Management"
         value="Task Management"
