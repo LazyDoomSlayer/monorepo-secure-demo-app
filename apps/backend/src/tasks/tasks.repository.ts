@@ -5,14 +5,24 @@ import { CreateTaskDto } from './dtos/create-task.dto';
 import { ETaskStatus } from './task-status.enum';
 import { FilterTasksDto } from './dtos/filter-tasks.dto';
 import { User } from '../auth/user.entity';
+import { DatabaseLogger } from '../logging/logging.service';
+import { TasksService } from './tasks.service';
 
 @Injectable()
 export class TasksRepository extends Repository<Task> {
-  constructor(private _dataSource: DataSource) {
+  constructor(
+    private _dataSource: DataSource,
+    private readonly dbLogger: DatabaseLogger,
+  ) {
     super(Task, _dataSource.createEntityManager());
   }
 
   async getTasks(filterDto: FilterTasksDto, user: User): Promise<Task[]> {
+    this.dbLogger.verbose(
+      'TasksService.getTasks() – fetching tasks',
+      TasksService.name,
+      { userId: user.id, filter: filterDto },
+    );
     const { status, title, description } = filterDto;
     const query = this.createQueryBuilder('task');
     query.where({ user });
@@ -33,7 +43,14 @@ export class TasksRepository extends Repository<Task> {
       });
     }
 
-    return await query.getMany();
+    const tasks = await query.getMany();
+    this.dbLogger.verbose(
+      'TasksService.getTasks() – fetched tasks',
+      TasksService.name,
+      { userId: user.id, count: tasks.length },
+    );
+
+    return tasks;
   }
 
   async findById(id: string, user: User): Promise<Task | null> {
@@ -41,6 +58,11 @@ export class TasksRepository extends Repository<Task> {
   }
 
   async createTask(createTaskDto: CreateTaskDto, user: User): Promise<Task> {
+    this.dbLogger.log(
+      'TasksService.createTask() – creating task',
+      TasksService.name,
+      { userId: user.id, payload: createTaskDto },
+    );
     const { title, description } = createTaskDto;
 
     const task = this.create({
@@ -52,6 +74,12 @@ export class TasksRepository extends Repository<Task> {
     });
 
     await this.save(task);
+
+    this.dbLogger.log(
+      'TasksService.createTask() – created task',
+      TasksService.name,
+      { userId: user.id, taskId: task.id },
+    );
 
     return task;
   }

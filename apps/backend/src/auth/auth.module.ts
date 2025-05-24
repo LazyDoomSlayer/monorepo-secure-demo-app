@@ -10,6 +10,7 @@ import { JWT_SECRET } from '../assets/constants';
 import { JwtStrategy } from './jwt.strategy';
 import { RolesGuard } from './roles.guard';
 import { AdminSeederService } from './admin-seeder.service';
+import { LogModule } from '../logging/logging.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { AdminSeederService } from './admin-seeder.service';
       },
     }),
     TypeOrmModule.forFeature([User]),
+    LogModule,
   ],
   controllers: [AuthController],
   providers: [

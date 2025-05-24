@@ -6,15 +6,22 @@ import { UpdateTaskDto } from './dtos/update-task.dto';
 import { FilterTasksDto } from './dtos/filter-tasks.dto';
 import { User } from '../auth/user.entity';
 import { AuditService } from '../audit/audit.service';
+import { DatabaseLogger } from '../logging/logging.service';
 
 @Injectable()
 export class TasksService {
   constructor(
     private readonly tasksRepository: TasksRepository,
     private readonly auditService: AuditService,
+    private readonly dbLogger: DatabaseLogger,
   ) {}
 
   async getTasks(filterDto: FilterTasksDto, user: User): Promise<Task[]> {
+    this.dbLogger.verbose(
+      'TasksService.getTasks() – fetching tasks',
+      TasksService.name,
+      { userId: user.id, filter: filterDto },
+    );
     const tasks = await this.tasksRepository.getTasks(filterDto, user);
     // Audit read for each returned task
     await Promise.all(
@@ -28,6 +35,13 @@ export class TasksService {
         }),
       ),
     );
+
+    this.dbLogger.verbose(
+      'TasksService.getTasks() – fetched tasks',
+      TasksService.name,
+      { userId: user.id, count: tasks.length },
+    );
+
     return tasks;
   }
 
@@ -62,6 +76,12 @@ export class TasksService {
   }
 
   async deleteTaskById(id: string, user: User): Promise<void> {
+    this.dbLogger.warn(
+      `TasksService.deleteTaskById() – deleting task`,
+      TasksService.name,
+      { userId: user.id, taskId: id },
+    );
+
     // Fetch before deletion for audit
     const task = await this.getTaskById(id, user);
 
@@ -73,6 +93,12 @@ export class TasksService {
       entityId: id,
       before: task,
     });
+
+    this.dbLogger.log(
+      'TasksService.deleteTaskById() – deleted task',
+      TasksService.name,
+      { userId: user.id, taskId: id },
+    );
   }
 
   async updateTaskById(
@@ -80,6 +106,12 @@ export class TasksService {
     updateTaskDto: UpdateTaskDto,
     user: User,
   ): Promise<Task> {
+    this.dbLogger.verbose(
+      `TasksService.updateTaskById() – updating task`,
+      TasksService.name,
+      { userId: user.id, taskId: id, update: updateTaskDto },
+    );
+
     const task = await this.getTaskById(id, user);
     const before = { ...task };
 
@@ -96,6 +128,12 @@ export class TasksService {
       before,
       after: updated,
     });
+
+    this.dbLogger.verbose(
+      'TasksService.updateTaskById() – task updated',
+      TasksService.name,
+      { userId: user.id, taskId: id },
+    );
 
     return updated;
   }

@@ -14,16 +14,34 @@ import { User } from './user.entity';
 import { Role } from './auth.enum';
 import { Roles } from './auth-roles.decorator';
 import { RolesGuard } from './roles.guard';
+import { DatabaseLogger } from '../logging/logging.service';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private readonly dbLogger: DatabaseLogger,
+  ) {}
 
   @Post('/signup')
   async signUp(
     @Body() authCredentialsDto: AuthCredentialsDto,
   ): Promise<{ msg: string }> {
+    const { username } = authCredentialsDto;
+
+    this.dbLogger.log(
+      'AuthController.signUp() – attempt',
+      AuthController.name,
+      { username },
+    );
+
     await this.authService.signUp(authCredentialsDto);
+
+    this.dbLogger.log(
+      'AuthController.signUp() – success',
+      AuthController.name,
+      { username },
+    );
     return { msg: 'User was added successfully' };
   }
 
@@ -31,34 +49,69 @@ export class AuthController {
   async signIn(
     @Body() authCredentialsDto: AuthCredentialsDto,
   ): Promise<IJwtResponse> {
-    return this.authService.signIn(authCredentialsDto);
+    const { username } = authCredentialsDto;
+    this.dbLogger.log(
+      'AuthController.signIn() – attempt',
+      AuthController.name,
+      { username: authCredentialsDto.username },
+    );
+    const tokens = await this.authService.signIn(authCredentialsDto);
+
+    this.dbLogger.log(
+      'AuthController.signIn() – success',
+      AuthController.name,
+      { username },
+    );
+
+    return tokens;
   }
 
   @Post('/signout')
   @UseGuards(AuthGuard())
   async signOut(@Req() req: Request & { user: User }) {
     const user = req.user;
-    if (!user || !user.id) {
+    if (!user?.id) {
+      this.dbLogger.warn(
+        'AuthController.signOut() – missing or invalid user',
+        AuthController.name,
+      );
       throw new UnauthorizedException('Invalid or missing token');
     }
+    this.dbLogger.log(
+      'AuthController.signOut() – attempt',
+      AuthController.name,
+      { userId: user.id },
+    );
 
     await this.authService.signOut(user.id);
-    return { message: 'Signed out successfully' };
-  }
 
-  @Post('/adminstuff')
-  @Roles(Role.Admin)
-  @UseGuards(AuthGuard(), RolesGuard) // ← no () on RolesGuard
-  adminstuff(@Req() req) {
-    console.info(req.user);
-    return 'Hello from admin';
+    this.dbLogger.log(
+      'AuthController.signOut() – success',
+      AuthController.name,
+      { userId: user.id },
+    );
+
+    return { message: 'Signed out successfully' };
   }
 
   @Post('refresh')
   async refresh(@Body('refreshToken') refreshToken: string) {
+    this.dbLogger.log(
+      'AuthController.refresh() – attempt',
+      AuthController.name,
+      {},
+    );
+
     const user = await this.authService.getUserByRefreshToken(refreshToken);
     const tokens = await this.authService.generateTokens(user);
     await this.authService.updateRefreshToken(user.id, tokens.refreshToken);
+
+    this.dbLogger.log(
+      'AuthController.refresh() – success',
+      AuthController.name,
+      { userId: user.id },
+    );
+
     return tokens;
   }
 }
