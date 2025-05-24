@@ -12,8 +12,6 @@ export class DatabaseLogger implements LoggerService {
   ) {}
 
   async getLogs(filter: GetLogsDto): Promise<[Log[], number]> {
-    console.log(22222222222);
-
     const qb = this.repo.createQueryBuilder('log');
 
     if (filter.level)
@@ -27,7 +25,6 @@ export class DatabaseLogger implements LoggerService {
     qb.orderBy('log.timestamp', 'DESC').skip(filter.skip).take(filter.take);
 
     const [data, total] = await qb.getManyAndCount();
-    console.log(33333333333333);
 
     return [data, total];
   }

@@ -26,9 +26,8 @@ export class LoggingController {
   @Get()
   @HttpCode(200)
   async getLogs(@Query() filter: GetLogsDto) {
-    console.log(111111111);
     const [logs, total] = await this.loggingService.getLogs(filter);
-    // Optionally send total back in headers or response wrapper
+
     return {
       total,
       items: plainToInstance(LogResponseDto, logs, {
