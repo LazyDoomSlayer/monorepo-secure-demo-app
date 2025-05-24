@@ -11,7 +11,7 @@
     </v-row>
 
     <!-- Tasks Table -->
-    <v-data-table :items="tasks" class="elevation-1">
+    <v-data-table :headers="headers" :items="tasks" class="elevation-1">
       <template #item.actions="{ item }">
         <v-btn icon @click="openEditDialog(item)">
           <v-icon>edit</v-icon>
