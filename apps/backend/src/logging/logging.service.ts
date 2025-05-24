@@ -1,7 +1,8 @@
-import { Injectable, LoggerService } from '@nestjs/common';
+import { Injectable, LoggerService, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Log } from './log.entity';
+import { GetLogsDto } from './get-logs.dto';
 
 @Injectable()
 export class DatabaseLogger implements LoggerService {
@@ -9,6 +10,33 @@ export class DatabaseLogger implements LoggerService {
     @InjectRepository(Log)
     private readonly repo: Repository<Log>,
   ) {}
+
+  async getLogs(filter: GetLogsDto): Promise<[Log[], number]> {
+    console.log(22222222222);
+
+    const qb = this.repo.createQueryBuilder('log');
+
+    if (filter.level)
+      qb.andWhere('log.level = :level', { level: filter.level });
+    if (filter.context)
+      qb.andWhere('log.context = :context', { context: filter.context });
+    if (filter.from)
+      qb.andWhere('log.timestamp >= :from', { from: filter.from });
+    if (filter.to) qb.andWhere('log.timestamp <= :to', { to: filter.to });
+
+    qb.orderBy('log.timestamp', 'DESC').skip(filter.skip).take(filter.take);
+
+    const [data, total] = await qb.getManyAndCount();
+    console.log(33333333333333);
+
+    return [data, total];
+  }
+
+  async getLogById(id: string): Promise<Log> {
+    const log = await this.repo.findOne({ where: { id } });
+    if (!log) throw new NotFoundException(`Log ${id} not found`);
+    return log;
+  }
 
   private write(
     level: Log['level'],
