@@ -20,7 +20,10 @@
     </v-list>
   </v-navigation-drawer>
 
-  <v-main> <audit-logs-management /> </v-main>
+  <v-main>
+    <audit-logs-management />
+    <logging-management />
+  </v-main>
 </template>
 
 <script setup lang="ts">
@@ -32,6 +35,7 @@ import { onBeforeMount, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { getAllAuditLogs } from '@/modules/audit.ts'
 import AuditLogsManagement from '@/components/audit/AuditLogsManagement.vue'
+import LoggingManagement from '@/components/logging/logging-management.vue'
 
 const drawer = ref(true)
 const rail = ref(true)
