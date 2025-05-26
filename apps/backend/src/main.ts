@@ -17,7 +17,8 @@ async function bootstrap() {
   app.enableCors();
 
   app.useLogger(app.get(DatabaseLogger));
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 3000, '0.0.0.0');
+  console.log(`Application is listening on Port ${process.env.PORT ?? 3000}.`);
   logger.log(`Application is listening on Port ${process.env.PORT ?? 3000}.`);
 }
 
