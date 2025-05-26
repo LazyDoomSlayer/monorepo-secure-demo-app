@@ -7,13 +7,13 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { AuthCredentialsDto } from './dto/auth-credentials.dto';
-import type { IJwtResponse } from './jwt-payload.interface';
+import { AuthCredentialsDto } from './dtos/auth-credentials.dto';
+import type { IJwtResponse } from './types/jwt-payload.interface';
 import { AuthGuard } from '@nestjs/passport';
-import { User } from './user.entity';
-import { Role } from './auth.enum';
-import { Roles } from './auth-roles.decorator';
-import { RolesGuard } from './roles.guard';
+import { User } from './entities/user.entity';
+import { Role } from './types/auth.enum';
+import { Roles } from './decorators/auth-roles.decorator';
+import { RolesGuard } from './guards/roles.guard';
 import { DatabaseLogger } from '../logging/logging.service';
 
 @Controller('auth')

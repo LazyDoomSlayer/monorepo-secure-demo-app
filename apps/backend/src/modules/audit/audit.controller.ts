@@ -8,12 +8,12 @@ import {
 } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { AuditService } from './audit.service';
-import { RolesGuard } from '../auth/roles.guard';
+import { RolesGuard } from '../auth/guards/roles.guard';
 import { AuthGuard } from '@nestjs/passport';
-import { Roles } from 'src/modules/auth/auth-roles.decorator';
-import { Role } from 'src/modules/auth/auth.enum';
-import { AuditLogResponseDto } from './audit-logs-response.dto';
-import { GetAuditLogsDto } from './get-audit-logs.dto';
+import { Roles } from 'src/modules/auth/decorators/auth-roles.decorator';
+import { Role } from 'src/modules/auth/types/auth.enum';
+import { AuditLogResponseDto } from './dtos/audit-logs-response.dto';
+import { GetAuditLogsDto } from './dtos/get-audit-logs.dto';
 import { DatabaseLogger } from '../logging/logging.service';
 
 @Controller('audit')

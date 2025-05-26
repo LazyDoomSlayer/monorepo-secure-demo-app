@@ -10,12 +10,12 @@ import {
 } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { DatabaseLogger } from './logging.service';
-import { LogResponseDto } from './log-response.dto';
-import { GetLogsDto } from './get-logs.dto';
+import { LogResponseDto } from './dtos/log-response.dto';
+import { GetLogsDto } from './dtos/get-logs.dto';
 import { AuthGuard } from '@nestjs/passport';
-import { RolesGuard } from '../auth/roles.guard';
-import { Roles } from '../auth/auth-roles.decorator';
-import { Role } from '../auth/auth.enum';
+import { RolesGuard } from '../auth/guards/roles.guard';
+import { Roles } from '../auth/decorators/auth-roles.decorator';
+import { Role } from '../auth/types/auth.enum';
 
 @Controller('logs')
 @UseGuards(AuthGuard(), RolesGuard)

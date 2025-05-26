@@ -3,11 +3,11 @@ import {
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
-import { User } from './user.entity';
+import { User } from '../entities/user.entity';
 import { DataSource, Repository } from 'typeorm';
-import { AuthCredentialsDto } from './dto/auth-credentials.dto';
-import { ERROR_CODE_FOR_DUBLICATE } from '../../assets/constants';
-import { EAuthErrorMessages } from './auth.enum';
+import { AuthCredentialsDto } from '../dtos/auth-credentials.dto';
+import { ERROR_CODE_FOR_DUBLICATE } from '../../../assets/constants';
+import { EAuthErrorMessages } from '../types/auth.enum';
 import * as bcrypt from 'bcryptjs';
 
 @Injectable()

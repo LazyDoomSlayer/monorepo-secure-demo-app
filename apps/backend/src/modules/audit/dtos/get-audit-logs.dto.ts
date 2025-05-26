@@ -1,6 +1,6 @@
 import { IsOptional, IsString, IsEnum, IsDateString } from 'class-validator';
 import { JoinColumn, ManyToOne } from 'typeorm';
-import { User } from '../auth/user.entity';
+import { User } from '../../auth/entities/user.entity';
 
 export class GetAuditLogsDto {
   @IsOptional()

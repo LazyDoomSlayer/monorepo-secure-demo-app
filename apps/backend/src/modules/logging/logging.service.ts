@@ -1,8 +1,8 @@
 import { Injectable, LoggerService, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Log } from './log.entity';
-import { GetLogsDto } from './get-logs.dto';
+import { Log } from './entities/log.entity';
+import { GetLogsDto } from './dtos/get-logs.dto';
 
 @Injectable()
 export class DatabaseLogger implements LoggerService {

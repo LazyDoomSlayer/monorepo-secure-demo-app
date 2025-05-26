@@ -10,8 +10,8 @@ import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
-import { User } from './user.entity';
-import { Role } from './auth.enum';
+import { User } from '../entities/user.entity';
+import { Role } from '../types/auth.enum';
 
 @Injectable()
 export class AdminSeederService implements OnApplicationBootstrap {

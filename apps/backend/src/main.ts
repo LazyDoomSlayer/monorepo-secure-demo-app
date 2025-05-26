@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import { TransformInterceptor } from './transform.interceptor';
+import { TransformInterceptor } from './common/transform.interceptor';
 import { Logger } from '@nestjs/common';
 import { DatabaseLogger } from './modules/logging/logging.service';
 

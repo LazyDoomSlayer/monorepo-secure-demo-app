@@ -1,6 +1,6 @@
-import { Task } from '../tasks/task.entity';
+import { Task } from '../../tasks/entities/task.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Role } from './auth.enum';
+import { Role } from '../types/auth.enum';
 
 @Entity()
 export class User {
