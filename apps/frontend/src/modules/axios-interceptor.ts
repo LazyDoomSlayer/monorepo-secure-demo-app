@@ -1,7 +1,9 @@
 import axios from 'axios'
 import type { JwtResponse } from '@/types/modules/authentication.types.ts'
 
+axios.defaults.withCredentials = true
 axios.defaults.baseURL = import.meta.env.VITE_SERVER_URL
+
 axios.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('user_access_token')
