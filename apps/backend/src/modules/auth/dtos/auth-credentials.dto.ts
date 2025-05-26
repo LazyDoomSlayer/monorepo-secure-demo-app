@@ -10,6 +10,9 @@ export class AuthCredentialsDto {
   @IsString()
   @MinLength(8)
   @MaxLength(64)
-  @Matches(DEFAULT_PASSWORD_PATTERN, { message: 'Your password is shithole.' })
+  @Matches(DEFAULT_PASSWORD_PATTERN, {
+    message:
+      'Password must be 8–64 characters long and include uppercase, lowercase, number, and special character.',
+  })
   password: string;
 }
