@@ -11,9 +11,6 @@ import { AuthCredentialsDto } from './dtos/auth-credentials.dto';
 import type { IJwtResponse } from './types/jwt-payload.interface';
 import { AuthGuard } from '@nestjs/passport';
 import { User } from './entities/user.entity';
-import { Role } from './types/auth.enum';
-import { Roles } from './decorators/auth-roles.decorator';
-import { RolesGuard } from './guards/roles.guard';
 import { DatabaseLogger } from '../logging/logging.service';
 
 @Controller('auth')

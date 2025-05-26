@@ -2,7 +2,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '../src/app.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthController } from '../src/modules/auth/auth.controller';
-import { TasksController } from '../src/modules/tasks/tasks.controller';
 import { TasksModule } from '../src/modules/tasks/tasks.module';
 import * as request from 'supertest';
 import { INestApplication } from '@nestjs/common';
