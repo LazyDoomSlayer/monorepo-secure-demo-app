@@ -15,11 +15,7 @@ async function bootstrap() {
   app.useGlobalInterceptors(new TransformInterceptor());
 
   app.enableCors({
-    origin: [
-      'http://localhost:4173',
-      'http://localhost:5173',
-      'https://monorepo-secure-demo-app.lazydoomslayer.dev/',
-    ],
+    origin: process.env.PORT?.split(',') || [],
     credentials: true,
   });
 
