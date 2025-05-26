@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { TransformInterceptor } from './transform.interceptor';
 import { Logger } from '@nestjs/common';
-import { DatabaseLogger } from './logging/logging.service';
+import { DatabaseLogger } from './modules/logging/logging.service';
 
 async function bootstrap() {
   const logger = new Logger();

@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '../src/app.module';
-import { AuthModule } from '../src/auth/auth.module';
+import { AuthModule } from '../src/modules/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
-import { AuthController } from '../src/auth/auth.controller';
+import { AuthController } from '../src/modules/auth/auth.controller';
 import { v4 as uuidv4 } from 'uuid';
 
 describe('AppController (e2e)', () => {

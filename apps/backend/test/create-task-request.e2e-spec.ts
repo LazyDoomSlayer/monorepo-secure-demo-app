@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '../src/app.module';
 import { ConfigModule } from '@nestjs/config';
-import { AuthController } from '../src/auth/auth.controller';
-import { TasksController } from '../src/tasks/tasks.controller';
-import { TasksModule } from '../src/tasks/tasks.module';
+import { AuthController } from '../src/modules/auth/auth.controller';
+import { TasksController } from '../src/modules/tasks/tasks.controller';
+import { TasksModule } from '../src/modules/tasks/tasks.module';
 import * as request from 'supertest';
 import { INestApplication } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';

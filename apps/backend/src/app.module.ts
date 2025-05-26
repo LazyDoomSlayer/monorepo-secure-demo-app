@@ -1,17 +1,17 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TasksModule } from './tasks/tasks.module';
-import { AuthModule } from './auth/auth.module';
-import { Task } from './tasks/task.entity';
-import { User } from './auth/user.entity';
-import { AuditModule } from './audit/audit.module';
-import { AuditLog } from './audit/audit-log.entity';
+import { TasksModule } from './modules/tasks/tasks.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { Task } from './modules/tasks/task.entity';
+import { User } from './modules/auth/user.entity';
+import { AuditModule } from './modules/audit/audit.module';
+import { AuditLog } from './modules/audit/audit-log.entity';
 import { WinstonModule } from 'nest-winston';
 import * as winston from 'winston';
 import 'winston-postgres';
-import { LogModule } from './logging/logging.module';
-import { Log } from './logging/log.entity';
+import { LogModule } from './modules/logging/logging.module';
+import { Log } from './modules/logging/log.entity';
 import { PostgresTransport } from 'winston-transport-pg';
 import { Pool } from 'pg';
 
