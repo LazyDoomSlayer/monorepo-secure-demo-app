@@ -14,10 +14,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalInterceptors(new TransformInterceptor());
 
-  app.enableCors({
-    origin: process.env.PORT?.split(',') || [],
-    credentials: true,
-  });
+  app.enableCors();
 
   app.useLogger(app.get(DatabaseLogger));
   await app.listen(process.env.PORT ?? 3000);
