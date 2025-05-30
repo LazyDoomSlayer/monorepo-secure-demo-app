@@ -4,23 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fece6c7-5b31-4483-87da-a6bfa30354d1" name="Changes" comment="feat(ci): Update nest running location.">
-      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/secure/.dockerignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/secure/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/secure/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/secure/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/secure/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" beforeDir="false" afterPath="$PROJECT_DIR$/secure/.idea/jsLinters/eslint.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/secure/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/monorepo-secure-demo-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/secure/.idea/monorepo-secure-demo-app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" afterPath="$PROJECT_DIR$/secure/.idea/prettier.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/secure/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/secure/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pnpm-workspace.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/secure/pnpm-workspace.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/turbo.json" beforeDir="false" />
+    <list default="true" id="3fece6c7-5b31-4483-87da-a6bfa30354d1" name="Changes" comment="chore(root): Add IDE metadata.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/secure/apps/backend/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/secure/apps/backend/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/secure/apps/backend/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/secure/apps/backend/src/app.module.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,9 +28,15 @@
       </list>
     </option>
   </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SET_USER_NAME_GLOBALLY" value="false" />
+  </component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -53,36 +46,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Docker.docker-compose.yml.postgres: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.AppController (e2e).Should successfully register the user..executor&quot;: &quot;Run&quot;,
-    &quot;Jest.AppController (e2e).executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/lukaj/Documents/GitHub/Personal/monorepo-secure-demo-app&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs.jest.jest_package&quot;: &quot;C:/Users/lukaj/Documents/GitHub/Personal/monorepo-secure-demo-app/apps/backend/node_modules/jest&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
-    &quot;npm.frontend &gt; test:e2e:dev.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\lukaj\\Documents\\GitHub\\Personal\\monorepo-secure-demo-app\\apps\\backend\\node_modules\\prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\lukaj\\Documents\\GitHub\\Personal\\monorepo-secure-demo-app\\apps\\backend\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Docker.docker-compose.yml.postgres: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "Jest.AppController (e2e).Should successfully register the user..executor": "Run",
+    "Jest.AppController (e2e).executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "code.cleanup.on.save": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/lukaj/Documents/GitHub/Personal/monorepo-secure-demo-app",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "C:/Users/lukaj/Documents/GitHub/Personal/monorepo-secure-demo-app/apps/backend/node_modules/jest",
+    "nodejs_package_manager_path": "pnpm",
+    "npm.frontend > test:e2e:dev.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\lukaj\\Documents\\GitHub\\Personal\\monorepo-secure-demo-app\\apps\\backend\\node_modules\\prettier",
+    "rearrange.code.on.save": "true",
+    "settings.editor.selected.configurable": "actions.on.save",
+    "ts.external.directory.path": "C:\\Users\\lukaj\\Documents\\GitHub\\Personal\\monorepo-secure-demo-app\\secure\\apps\\frontend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;vue.recent.templates&quot;: [
-      &quot;Vue Composition API Component&quot;
+  "keyToStringList": {
+    "vue.recent.templates": [
+      "Vue Composition API Component"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\lukaj\Documents\GitHub\Personal\monorepo-secure-demo-app\apps\backend" />
@@ -225,6 +224,8 @@
       <workItem from="1748276819744" duration="715000" />
       <workItem from="1748354082389" duration="3000" />
       <workItem from="1748617853481" duration="140000" />
+      <workItem from="1748618021009" duration="981000" />
+      <workItem from="1748625174942" duration="430000" />
     </task>
     <task id="LOCAL-00001" summary="feat(docs): Add readme documentation for the project.">
       <option name="closed" value="true" />
@@ -538,7 +539,23 @@
       <option name="project" value="LOCAL" />
       <updated>1748275488199</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="refactor(root): Clone application into secure and unsecure parts.">
+      <option name="closed" value="true" />
+      <created>1748618058203</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1748618058203</updated>
+    </task>
+    <task id="LOCAL-00041" summary="chore(root): Add IDE metadata.">
+      <option name="closed" value="true" />
+      <created>1748618215140</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1748618215140</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -553,8 +570,6 @@
     <option featureType="dependencySupport" implementationName="javascript:npm:cypress" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat(backend): Update imports for relative pathing." />
-    <MESSAGE value="feat(backend): Add e2e test for authentication controller." />
     <MESSAGE value="feat(backend): Add e2e test for tasks controller." />
     <MESSAGE value="feat(backend): Update cors for domain." />
     <MESSAGE value="feat(frontend): Remove unsued test cases." />
@@ -578,6 +593,8 @@
     <MESSAGE value="feat(ci): Remove cors rules." />
     <MESSAGE value="feat(ci): Update Nginx rules." />
     <MESSAGE value="feat(ci): Update nest running location." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(ci): Update nest running location." />
+    <MESSAGE value="refactor(root): Clone application into secure and unsecure parts." />
+    <MESSAGE value="chore(root): Add IDE metadata." />
+    <option name="LAST_COMMIT_MESSAGE" value="chore(root): Add IDE metadata." />
   </component>
 </project>
