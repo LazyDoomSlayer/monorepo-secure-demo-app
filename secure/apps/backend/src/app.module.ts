@@ -25,11 +25,7 @@ import { Pool } from 'pg';
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         type: 'postgres',
-        host: 'localhost',
-        port: 5432,
-        username: config.get('POSTGRES_USER'),
-        password: config.get('POSTGRES_PASSWORD'),
-        database: config.get('POSTGRES_DB'),
+        url: config.get('DATABASE_URL').replace('localhost', 'postgres'),
         entities: [User, Task, AuditLog, Log],
         synchronize: true,
         autoLoadEntities: false,
@@ -39,18 +35,15 @@ import { Pool } from 'pg';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
-        // 1) Create a pg Pool
         const pool = new Pool({
           connectionString: config.get('DATABASE_URL'),
         });
 
-        // 2) Build your Winston options
         return {
           level: 'info',
           format: winston.format.json(),
           transports: [
             new winston.transports.Console(),
-            // 3) Instantiate the PG transport with pool + opts
             new PostgresTransport(pool, {
               tableName: 'application_logs',
               level: 'info',
