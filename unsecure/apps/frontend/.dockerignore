@@ -1,0 +1,11 @@
+# don’t send local deps or build artifacts
+node_modules
+dist
+
+# don’t send VCS or env files
+.git
+.env
+
+# logs, editor backups, etc
+npm-debug.log*
+yarn-debug.log*
