@@ -14,9 +14,27 @@ import { LogModule } from './modules/logging/logging.module';
 import { Log } from './modules/logging/entities/log.entity';
 import { PostgresTransport } from 'winston-transport-pg';
 import { Pool } from 'pg';
+import { ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
   imports: [
+    ThrottlerModule.forRoot([
+      {
+        name: 'short',
+        ttl: 1_000, // 1 second
+        limit: 3, // 3 req / 1 s
+      },
+      {
+        name: 'medium',
+        ttl: 10_000, // 10 seconds
+        limit: 20, // 20 req / 10 s
+      },
+      {
+        name: 'long',
+        ttl: 60_000, // 60 seconds
+        limit: 100, // 100 req / 1 min
+      },
+    ]),
     ConfigModule.forRoot({
       isGlobal: true,
     }),

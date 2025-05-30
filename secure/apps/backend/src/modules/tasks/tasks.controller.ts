@@ -19,6 +19,8 @@ import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from '../auth/decorators/get-user.decorator';
 import { User } from '../auth/entities/user.entity';
 import { DatabaseLogger } from '../logging/logging.service';
+import { LONG, MEDIUM, SHORT } from '../../common/throttler.profiles';
+import { SkipThrottle, Throttle } from '@nestjs/throttler';
 
 @Controller('tasks')
 @UseGuards(AuthGuard())
@@ -31,6 +33,7 @@ export class TasksController {
   ) {}
 
   @Get()
+  @Throttle(LONG)
   async getTasks(
     @Query() filterTasksDto: FilterTasksDto,
     @GetUser() user: User,
@@ -50,6 +53,7 @@ export class TasksController {
   }
 
   @Get('/:id')
+  @Throttle(LONG)
   async getTaskById(
     @Param('id') id: string,
     @GetUser() user: User,
@@ -71,6 +75,7 @@ export class TasksController {
   }
 
   @Delete('/:id')
+  @Throttle(SHORT)
   async deleteTaskById(
     @Param('id') id: string,
     @GetUser() user: User,
@@ -92,6 +97,7 @@ export class TasksController {
   }
 
   @Patch('/:id')
+  @Throttle(MEDIUM)
   async updateTaskById(
     @Param('id') id: string,
     @Body() updateTaskDto: UpdateTaskDto,
@@ -114,6 +120,7 @@ export class TasksController {
   }
 
   @Post()
+  @Throttle(SHORT)
   async createTask(
     @Body() createTaskDto: CreateTaskDto,
     @GetUser() user: User,
