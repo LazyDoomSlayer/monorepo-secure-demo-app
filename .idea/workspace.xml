@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fece6c7-5b31-4483-87da-a6bfa30354d1" name="Changes" comment="chore(root): Add IDE metadata.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/secure/apps/backend/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/secure/apps/backend/.env.example" afterDir="false" />
+    <list default="true" id="3fece6c7-5b31-4483-87da-a6bfa30354d1" name="Changes" comment="feat(root): Update env example">
       <change beforePath="$PROJECT_DIR$/secure/apps/backend/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/secure/apps/backend/src/app.module.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -225,7 +223,7 @@
       <workItem from="1748354082389" duration="3000" />
       <workItem from="1748617853481" duration="140000" />
       <workItem from="1748618021009" duration="981000" />
-      <workItem from="1748625174942" duration="430000" />
+      <workItem from="1748625174942" duration="465000" />
     </task>
     <task id="LOCAL-00001" summary="feat(docs): Add readme documentation for the project.">
       <option name="closed" value="true" />
@@ -555,7 +553,23 @@
       <option name="project" value="LOCAL" />
       <updated>1748618215140</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="feat(root): Update project metadata.">
+      <option name="closed" value="true" />
+      <created>1748625628190</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1748625628190</updated>
+    </task>
+    <task id="LOCAL-00043" summary="feat(root): Update env example">
+      <option name="closed" value="true" />
+      <created>1748625638548</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1748625638548</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -570,8 +584,6 @@
     <option featureType="dependencySupport" implementationName="javascript:npm:cypress" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat(backend): Add e2e test for tasks controller." />
-    <MESSAGE value="feat(backend): Update cors for domain." />
     <MESSAGE value="feat(frontend): Remove unsued test cases." />
     <MESSAGE value="chore(frontend): Remove silly secret." />
     <MESSAGE value="feat(frontend): Add middle ware role." />
@@ -595,6 +607,8 @@
     <MESSAGE value="feat(ci): Update nest running location." />
     <MESSAGE value="refactor(root): Clone application into secure and unsecure parts." />
     <MESSAGE value="chore(root): Add IDE metadata." />
-    <option name="LAST_COMMIT_MESSAGE" value="chore(root): Add IDE metadata." />
+    <MESSAGE value="feat(root): Update project metadata." />
+    <MESSAGE value="feat(root): Update env example" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(root): Update env example" />
   </component>
 </project>
