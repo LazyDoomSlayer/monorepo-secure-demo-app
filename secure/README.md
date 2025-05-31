@@ -36,7 +36,7 @@ Clone the repo and install dependencies:
 
 ```bash
 git clone https://github.com/your-org/monorepo-secure-demo-app.git
-cd monorepo-secure-demo-app
+cd monorepo-secure-demo-app/secure
 pnpm install
 ```
 

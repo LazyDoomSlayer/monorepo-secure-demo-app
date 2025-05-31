@@ -26,59 +26,41 @@ A NestJS-based REST API for task management, with JWT auth and PostgreSQL—pack
    cd apps/backend
    pnpm install
    ```
-2. **Configure environment**  
-   Copy `.env` from the example (if there is one) or create it at `apps/backend/.env` with:
-
+2. **Configure environment** :  Copy `.env` from the example (if there is one) or create it at `apps/backend/.env` with:
    ```env
-   POSTGRES_USER=secure_user
-   POSTGRES_PASSWORD=super_secure_password_123
-   POSTGRES_DB=nest_task_management_db
+    CORS_ORIGINS=http://localhost:4173,http://localhost:5173,*
+    DATABASE_URL=postgres://<db_user>:<db_paswword>@<ip>/<db_name>
 
-   JWT_SECRET=my-super-secret-access-key
-   JWT_REFRESH_SECRET=my-even-more-secret-refresh-key-123456789
+    POSTGRES_USER=<db_user>
+    POSTGRES_PASSWORD=<db_paswword>
+    POSTGRES_DB=<db_name>
+
+    JWT_SECRET=<secret_1>
+    JWT_REFRESH_SECRET=<secret_2>
+
+    ADMIN_USERNAME=<username>
+    ADMIN_PASSWORD=<password>
    ```
 
-3. **Start PostgreSQL**
+3. **Start PostgreSQL**:  This spins up a `postgres:15` container configured via `docker-compose.yml`.
    ```bash
    docker-compose up -d
    ```
-   This spins up a `postgres:15` container configured via `docker-compose.yml`.
 
-4. **Run in development**
+4. **Run in development**: The API will be served at http://localhost:3000 by default.
    ```bash
    pnpm dev
    ```
-   Under the hood, this runs:
-   ```
-   nest start --watch
-   ```
-   The API will be served at http://localhost:3000 by default.
 
----
 
-## 📁 Project Structure
 
-```
-apps/backend/
-├── src/
-│   ├── auth/                # Authentication module (controllers, services, guards)
-│   ├── tasks/               # Task module (controllers, services, DTOs)
-│   ├── assets/              # Static assets (if any)
-│   └── main.ts              # Application entrypoint
-├── test/                    # Jest unit & e2e tests
-│   ├── jest-e2e.json        # E2E config
-│   └── HelloWorld.spec.ts   # Example test
-├── .env                     # Environment variables
-├── docker-compose.yml       # PostgreSQL service
-├── nest-cli.json            # Nest CLI configuration
-├── tsconfig*.json           # TypeScript configs
-├── eslint.config.mjs        # Lint rules
-├── prettier.config.js       # (via root or inherited)
-├── package.json             # Scripts & dependencies
-└── README.md                # ← You are here
-```
 
----
+
+## 🧪 Testing
+- **E2E** (Jest + Supertest, configured in `test/jest-e2e.json`):
+  ```bash
+  pnpm test:e2e
+  ```
 
 ## 📦 Available Scripts
 
@@ -98,46 +80,8 @@ Run these from `apps/backend`:
 | `pnpm test:cov`    | Generate Jest coverage report                         |
 | `pnpm test:e2e`    | Run end-to-end tests via Jest & Supertest             |
 
----
-
-## 🔒 Security & Auth
-
-- **JWT Access & Refresh Tokens**
-    - Configured via `JWT_SECRET` & `JWT_REFRESH_SECRET`
-    - `/auth/login`, `/auth/register`, `/auth/refresh` endpoints
-
-- **Database Encryption**
-    - All data in PostgreSQL stored on a Docker volume (encrypted at rest by default if configured)
-
----
-
-## 🧪 Testing
-
-- **Unit** (Jest + `@nestjs/testing`):
-  ```bash
-  pnpm test
-  ```
-- **E2E** (Jest + Supertest, configured in `test/jest-e2e.json`):
-  ```bash
-  pnpm test:e2e
-  ```
-
----
-
-## 📄 API Collection
-
-Use the Postman collection for manual API testing:
-
-```
-apps/backend/app.postman_collection.json
-```
-
-Import this into Postman (or Insomnia) to explore all endpoints.
-
----
 
 ## 📄 License
 
 This backend is licensed under **MIT**.  
 See [LICENSE](../../LICENSE) at the repo root for details.
-```

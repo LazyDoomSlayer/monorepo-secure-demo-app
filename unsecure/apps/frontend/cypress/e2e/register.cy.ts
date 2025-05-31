@@ -3,6 +3,11 @@ describe('User Registration', () => {
   const username = `usr${Date.now()}`
   const password = 'TestPass123!'
 
+  beforeEach(() => {
+    cy.clearCookies()
+    cy.clearLocalStorage()
+  })
+
   it('Navigates to register and registers successfully', () => {
     cy.visit('/login')
 
