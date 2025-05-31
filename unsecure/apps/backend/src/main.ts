@@ -1,8 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { TransformInterceptor } from './common/transform.interceptor';
-import { Logger } from '@nestjs/common';
 import { DatabaseLogger } from './modules/logging/logging.service';
 
 async function bootstrap() {
@@ -14,7 +13,11 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalInterceptors(new TransformInterceptor());
 
-  app.enableCors();
+  const origins = process.env.CORS_ORIGINS?.split(',') || [];
+  app.enableCors({
+    origin: origins,
+    credentials: true,
+  });
 
   app.useLogger(app.get(DatabaseLogger));
   await app.listen(process.env.PORT ?? 3000, '0.0.0.0');

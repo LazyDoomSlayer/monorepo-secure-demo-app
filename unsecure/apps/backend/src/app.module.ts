@@ -14,9 +14,27 @@ import { LogModule } from './modules/logging/logging.module';
 import { Log } from './modules/logging/entities/log.entity';
 import { PostgresTransport } from 'winston-transport-pg';
 import { Pool } from 'pg';
+import { ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
   imports: [
+    ThrottlerModule.forRoot([
+      {
+        name: 'short',
+        ttl: 1_000, // 1 second
+        limit: 3, // 3 req / 1 s
+      },
+      {
+        name: 'medium',
+        ttl: 10_000, // 10 seconds
+        limit: 20, // 20 req / 10 s
+      },
+      {
+        name: 'long',
+        ttl: 60_000, // 60 seconds
+        limit: 100, // 100 req / 1 min
+      },
+    ]),
     ConfigModule.forRoot({
       isGlobal: true,
     }),
@@ -25,11 +43,7 @@ import { Pool } from 'pg';
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         type: 'postgres',
-        host: 'localhost',
-        port: 5432,
-        username: config.get('POSTGRES_USER'),
-        password: config.get('POSTGRES_PASSWORD'),
-        database: config.get('POSTGRES_DB'),
+        url: config.get('DATABASE_URL'),
         entities: [User, Task, AuditLog, Log],
         synchronize: true,
         autoLoadEntities: false,
@@ -39,18 +53,15 @@ import { Pool } from 'pg';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
-        // 1) Create a pg Pool
         const pool = new Pool({
           connectionString: config.get('DATABASE_URL'),
         });
 
-        // 2) Build your Winston options
         return {
           level: 'info',
           format: winston.format.json(),
           transports: [
             new winston.transports.Console(),
-            // 3) Instantiate the PG transport with pool + opts
             new PostgresTransport(pool, {
               tableName: 'application_logs',
               level: 'info',

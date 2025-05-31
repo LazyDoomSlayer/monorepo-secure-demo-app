@@ -4,16 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65fa542b-b79a-4c1f-a31f-247b108dcb8c" name="Changes" comment="chore(root): Update project metadata.">
+    <list default="true" id="65fa542b-b79a-4c1f-a31f-247b108dcb8c" name="Changes" comment="feat(root): Update postman collection,">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/secure/apps/backend/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/secure/apps/backend/src/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/secure/apps/backend/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/secure/apps/backend/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/secure/turbo.json" beforeDir="false" afterPath="$PROJECT_DIR$/secure/turbo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unsecure/apps/backend/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/unsecure/apps/backend/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unsecure/apps/backend/app.postman_collection.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/unsecure/apps/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/unsecure/apps/backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unsecure/apps/backend/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/unsecure/apps/backend/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unsecure/apps/backend/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/unsecure/apps/backend/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unsecure/apps/backend/src/modules/auth/auth.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/unsecure/apps/backend/src/modules/auth/auth.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unsecure/apps/backend/src/modules/logging/logging.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/unsecure/apps/backend/src/modules/logging/logging.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unsecure/apps/backend/src/modules/tasks/tasks.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/unsecure/apps/backend/src/modules/tasks/tasks.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unsecure/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/unsecure/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unsecure/turbo.json" beforeDir="false" afterPath="$PROJECT_DIR$/unsecure/turbo.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+      <option value="repository" />
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -32,6 +45,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/lukaj/Documents/GitHub/Personal/monorepo-secure-demo-app/secure/apps/backend",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -61,11 +75,51 @@
       <option name="presentableId" value="Default" />
       <updated>1748682937195</updated>
       <workItem from="1748682938265" duration="6000" />
-      <workItem from="1748683831495" duration="661000" />
+      <workItem from="1748683831495" duration="1337000" />
     </task>
+    <task id="LOCAL-00001" summary="fix(ci): Fix replace logic env text issue.">
+      <option name="closed" value="true" />
+      <created>1748684625488</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1748684625488</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat(root): Move to tui from stream.">
+      <option name="closed" value="true" />
+      <created>1748684643753</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1748684643753</updated>
+    </task>
+    <task id="LOCAL-00003" summary="chore(root): Update project metadata.">
+      <option name="closed" value="true" />
+      <created>1748684666086</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1748684666086</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat(root): Update postman collection,">
+      <option name="closed" value="true" />
+      <created>1748685080184</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1748685080184</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix(ci): Fix replace logic env text issue." />
+    <MESSAGE value="feat(root): Move to tui from stream." />
+    <MESSAGE value="chore(root): Update project metadata." />
+    <MESSAGE value="feat(root): Update postman collection," />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(root): Update postman collection," />
   </component>
 </project>
