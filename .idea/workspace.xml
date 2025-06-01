@@ -5,18 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="65fa542b-b79a-4c1f-a31f-247b108dcb8c" name="Changes" comment="feat(root): Sync both projects.">
-      <change afterPath="$PROJECT_DIR$/secure/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/Secure App demo - Nest.postman_collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Secure App demo - Nest.postman_collection.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/secure/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/secure/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/secure/apps/backend/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/secure/apps/backend/.env.example" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/secure/apps/backend/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/secure/apps/backend/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/secure/apps/backend/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/secure/apps/backend/src/main.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/secure/apps/frontend/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/secure/apps/frontend/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/secure/apps/frontend/cypress/downloads/downloads.htm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/secure/apps/frontend/cypress/e2e/login.cy.ts" beforeDir="false" afterPath="$PROJECT_DIR$/secure/apps/frontend/cypress/e2e/login.cy.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/secure/apps/frontend/cypress/e2e/register.cy.ts" beforeDir="false" afterPath="$PROJECT_DIR$/secure/apps/frontend/cypress/e2e/register.cy.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/secure/apps/frontend/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/secure/apps/frontend/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,27 +32,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/lukaj/Documents/GitHub/Personal/monorepo-secure-demo-app/secure",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "pnpm",
-    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\lukaj\\Documents\\GitHub\\Personal\\monorepo-secure-demo-app\\secure\\apps\\frontend\\node_modules\\prettier",
-    "ts.external.directory.path": "C:\\Users\\lukaj\\Documents\\GitHub\\Personal\\monorepo-secure-demo-app\\secure\\apps\\frontend\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/lukaj/Documents/GitHub/Personal/monorepo-secure-demo-app/secure&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\lukaj\\Documents\\GitHub\\Personal\\monorepo-secure-demo-app\\secure\\apps\\frontend\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\lukaj\\Documents\\GitHub\\Personal\\monorepo-secure-demo-app\\secure\\apps\\frontend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\lukaj\Documents\GitHub\Personal\monorepo-secure-demo-app\secure" />
@@ -87,7 +80,8 @@
       <option name="presentableId" value="Default" />
       <updated>1748682937195</updated>
       <workItem from="1748682938265" duration="6000" />
-      <workItem from="1748683831495" duration="5293000" />
+      <workItem from="1748683831495" duration="5987000" />
+      <workItem from="1748782364387" duration="1141000" />
     </task>
     <task id="LOCAL-00001" summary="fix(ci): Fix replace logic env text issue.">
       <option name="closed" value="true" />
@@ -129,7 +123,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748685196668</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat(root): Sync both projects.">
+      <option name="closed" value="true" />
+      <created>1748689797827</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1748689797827</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

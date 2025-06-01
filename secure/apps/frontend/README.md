@@ -1,7 +1,7 @@
 # Frontend
 
-A Vue 3 + TypeScript single-page application built with Vite, Pinia, Vuetify, and Axios.  
-This app connects to the secure backend (e.g. via `VITE_SERVER_URL`) and provides authentication, task management, and responsive UI.
+A Vue 3 + TypeScript single-page application (SPA) built with Vite, Pinia, Vuetify, and Axios.  
+It connects to the secure NestJS backend for authentication, task management, and audit logging.
 
 ---
 
@@ -9,78 +9,72 @@ This app connects to the secure backend (e.g. via `VITE_SERVER_URL`) and provide
 
 ### Prerequisites
 
-- **Node.js** (≥14)
-- **pnpm**  
-  ```bash
-  npm install -g pnpm
-  ```
-- **Docker** (optional, to run the backend locally)
+- Node.js ≥ 18
+- pnpm (recommended)
+- Docker (optional, for running backend locally)
 
-### Install & Run
-The app will be available at <http://localhost:5173> by default.pnpm
+### Installation & Development
 
 ```bash
 cd apps/frontend
 pnpm install
-
 pnpm dev
-```
+````
+
+Frontend will run at: [http://localhost:5173](http://localhost:5173)
 
 ---
 
 ## 🔧 Configuration
 
-Copy and adjust environment variables:
+Create a `.env` file based on `.env.example`:
 
 ```bash
 cp .env.example .env
 ```
 
-- `VITE_SERVER_URL` — URL (and port) where your backend is running (e.g. `localhost:3000`).
+Edit the backend URL:
 
----
-
-
-
-
-## 🧪 Testing
-- **E2E**: Cypress
-  ```bash
-  pnpm test:e2e
-  ```
----
-
-
-
-## 🎨 Lint & Format
-
-- **ESLint** with TypeScript & Prettier rules
-- **Prettier** for code formatting
-- **OX Lint** for extra correctness checks
-
-```bash
-pnpm lint
-pnpm format
+```
+VITE_SERVER_URL=http://localhost:3000
 ```
 
 ---
 
-## 📦 Available Scripts
+## 🧪 Testing
 
-| Script               | What it does                                          |
-| :------------------- | :----------------------------------------------------- |
-| `pnpm dev`           | Start Vite dev server (hot reload)                    |
-| `pnpm build`         | Run type-check & build for production                 |
-| `pnpm preview`       | Preview the production build via `vite preview`       |
-| `pnpm test:unit`     | Run unit tests with Vitest                            |
-| `pnpm test:e2e`      | Build, serve and run Cypress E2E tests (headless)     |
-| `pnpm test:e2e:dev`  | Start dev server & open Cypress UI                    |
-| `pnpm lint`          | Run ESLint (auto-fix) and OX Lint                      |
-| `pnpm format`        | Format `src/` files with Prettier                      |
+* E2E: Cypress
+
+```bash
+pnpm test:e2e       # Headless mode
+pnpm test:e2e:dev   # Dev mode with Cypress UI
+```
+
+---
+
+## 🧹 Lint & Format
+
+```bash
+pnpm lint       # Runs ESLint + OX Lint
+pnpm format     # Prettier formatting
+```
+
+---
+
+## 📦 Scripts
+
+| Command             | Description              |
+| ------------------- | ------------------------ |
+| `pnpm dev`          | Start local dev server   |
+| `pnpm build`        | Build for production     |
+| `pnpm preview`      | Preview production build |
+| `pnpm test:e2e`     | Run E2E tests (Cypress)  |
+| `pnpm test:e2e:dev` | Dev server + Cypress UI  |
+| `pnpm lint`         | Lint codebase            |
+| `pnpm format`       | Format codebase          |
 
 ---
 
 ## 📄 License
 
-This backend is licensed under **MIT**.  
-See [LICENSE](../../LICENSE) at the repo root for details.
+MIT — See [LICENSE](../../LICENSE)
