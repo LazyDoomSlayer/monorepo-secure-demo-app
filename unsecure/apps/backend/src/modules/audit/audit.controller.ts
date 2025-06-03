@@ -2,23 +2,16 @@ import {
   Controller,
   Get,
   Query,
-  UseGuards,
   HttpCode,
   Param,
 } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { AuditService } from './audit.service';
-import { RolesGuard } from '../auth/guards/roles.guard';
-import { AuthGuard } from '@nestjs/passport';
-import { Roles } from '../auth/decorators/auth-roles.decorator';
-import { Role } from '../auth/types/auth.enum';
 import { AuditLogResponseDto } from './dtos/audit-logs-response.dto';
 import { GetAuditLogsDto } from './dtos/get-audit-logs.dto';
 import { DatabaseLogger } from '../logging/logging.service';
 
 @Controller('audit')
-@UseGuards(AuthGuard(), RolesGuard)
-@Roles(Role.Admin)
 export class AuditController {
   constructor(
     private readonly auditService: AuditService,

@@ -43,7 +43,7 @@ import { ThrottlerModule } from '@nestjs/throttler';
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         type: 'postgres',
-        url: config.get('DATABASE_URL'),
+        url: 'postgres://secure_user:super_secure_password_123@localhost:5432/nest_task_management_db',
         entities: [User, Task, AuditLog, Log],
         synchronize: true,
         autoLoadEntities: false,
@@ -54,7 +54,7 @@ import { ThrottlerModule } from '@nestjs/throttler';
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
         const pool = new Pool({
-          connectionString: config.get('DATABASE_URL'),
+          connectionString: 'postgres://secure_user:super_secure_password_123@localhost:5432/nest_task_management_db',
         });
 
         return {

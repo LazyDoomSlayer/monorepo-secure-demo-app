@@ -12,8 +12,6 @@ import type { IJwtResponse } from './types/jwt-payload.interface';
 import { AuthGuard } from '@nestjs/passport';
 import { User } from './entities/user.entity';
 import { DatabaseLogger } from '../logging/logging.service';
-import { Throttle } from '@nestjs/throttler';
-import { LONG, MEDIUM, SHORT } from '../../common/throttler.profiles';
 
 @Controller('auth')
 export class AuthController {
@@ -23,7 +21,6 @@ export class AuthController {
   ) {}
 
   @Post('/signup')
-  @Throttle(SHORT)
   async signUp(
     @Body() authCredentialsDto: AuthCredentialsDto,
   ): Promise<{ msg: string }> {
@@ -46,7 +43,6 @@ export class AuthController {
   }
 
   @Post('/signin')
-  @Throttle(SHORT)
   async signIn(
     @Body() authCredentialsDto: AuthCredentialsDto,
   ): Promise<IJwtResponse> {
@@ -69,7 +65,6 @@ export class AuthController {
 
   @Post('/signout')
   @UseGuards(AuthGuard())
-  @Throttle(LONG)
   async signOut(@Req() req: Request & { user: User }) {
     const user = req.user;
     if (!user?.id) {
@@ -97,7 +92,6 @@ export class AuthController {
   }
 
   @Post('refresh')
-  @Throttle(MEDIUM)
   async refresh(@Body('refreshToken') refreshToken: string) {
     this.dbLogger.log(
       'AuthController.refresh() – attempt',

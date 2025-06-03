@@ -13,9 +13,8 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalInterceptors(new TransformInterceptor());
 
-  const origins = process.env.CORS_ORIGINS?.split(',') || [];
   app.enableCors({
-    origin: origins,
+    origin: "*",
     credentials: true,
   });
 

@@ -4,12 +4,14 @@ services:
     image: postgres:latest
     container_name: monorepo-secure-demo_pg
     restart: unless-stopped
-    env_file:
-      - ./apps/backend/.env
     ports:
       - '5432:5432'
     volumes:
       - monorepo-secure-demo_pg_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: secure_user
+      POSTGRES_PASSWORD: super_secure_password_123
+      POSTGRES_DB: nest_task_management_db
 
   backend:
     build:
@@ -19,21 +21,29 @@ services:
     restart: always
     depends_on:
       - postgres
-    env_file:
-      - ./apps/backend/.env
     ports:
       - '3000:3000'
+    environment:
+      CORS_ORIGINS: http://localhost:4173,http://localhost:5173,*
+      DATABASE_URL: postgres://secure_user:super_secure_password_123@localhost:5432/nest_task_management_db
+      POSTGRES_USER: secure_user
+      POSTGRES_PASSWORD: super_secure_password_123
+      POSTGRES_DB: nest_task_management_db
+      JWT_SECRET: my-super-secret-access-key
+      JWT_REFRESH_SECRET: my-even-more-secret-refresh-key-123456789
+      ADMIN_USERNAME: my-super-secret-admin
+      ADMIN_PASSWORD: my-super-secret-P@ssw0rd!
 
   frontend:
     build:
       context: .
       dockerfile: ./apps/frontend/Dockerfile
     container_name: monorepo-secure-demo_frontend
-    env_file:
-      - ./apps/frontend/.env
     restart: unless-stopped
     ports:
       - '8081:443'
+    environment:
+      VITE_SERVER_URL: http://127.0.0.1:3000
 
 volumes:
   monorepo-secure-demo_pg_data:

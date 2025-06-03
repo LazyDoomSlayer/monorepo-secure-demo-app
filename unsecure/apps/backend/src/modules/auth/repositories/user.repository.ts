@@ -8,7 +8,6 @@ import { DataSource, Repository } from 'typeorm';
 import { AuthCredentialsDto } from '../dtos/auth-credentials.dto';
 import { ERROR_CODE_FOR_DUBLICATE } from '../../../assets/constants';
 import { EAuthErrorMessages } from '../types/auth.enum';
-import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class UsersRepository extends Repository<User> {
@@ -19,12 +18,9 @@ export class UsersRepository extends Repository<User> {
   async createUser(authCredentialsDto: AuthCredentialsDto): Promise<void> {
     const { username, password } = authCredentialsDto;
 
-    const salt = await bcrypt.genSalt();
-    const hashedPassword = await bcrypt.hash(password, salt);
-
     const user = this.create({
       username,
-      password: hashedPassword,
+      password
     });
 
     try {

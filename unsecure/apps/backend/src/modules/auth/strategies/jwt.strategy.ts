@@ -11,7 +11,7 @@ import { EAuthErrorMessages } from '../types/auth.enum';
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly usersRepository: UsersRepository) {
     super({
-      secretOrKey: JWT_SECRET,
+      secretOrKey: 'VerySecretKey',
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     });
   }
