@@ -15,6 +15,8 @@ import { Role } from '../auth/types/auth.enum';
 import { AuditLogResponseDto } from './dtos/audit-logs-response.dto';
 import { GetAuditLogsDto } from './dtos/get-audit-logs.dto';
 import { DatabaseLogger } from '../logging/logging.service';
+import { LONG } from '../../common/throttler.profiles';
+import {  Throttle } from '@nestjs/throttler';
 
 @Controller('audit')
 @UseGuards(AuthGuard(), RolesGuard)
@@ -27,6 +29,7 @@ export class AuditController {
 
   @Get()
   @HttpCode(200)
+  @Throttle(LONG)
   async getLogs(@Query() filterDto: GetAuditLogsDto) {
     this.dbLogger.log(
       `GET /audit – filter=${JSON.stringify(filterDto)}`,
@@ -72,6 +75,7 @@ export class AuditController {
 
   @Get(':id')
   @HttpCode(200)
+  @Throttle(LONG)
   async getLogById(@Param('id') id: string) {
     this.dbLogger.log(`GET /audit/${id}`, AuditController.name, { logId: id });
 
