@@ -18,6 +18,9 @@ import { ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     ThrottlerModule.forRoot([
       {
         name: 'short',
@@ -35,9 +38,6 @@ import { ThrottlerModule } from '@nestjs/throttler';
         limit: 100, // 100 req / 1 min
       },
     ]),
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
